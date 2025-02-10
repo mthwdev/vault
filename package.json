@@ -1,0 +1,14 @@
+{
+	"name": "vault",
+	"version": "0.0.0",
+	"main": "src/main.js",
+	"type": "module",
+	"author": "mthwdev",
+	"license": "MIT",
+	"scripts": {
+		"dev": "electron ."
+	},
+	"dependencies": {
+		"electron": "^34.0.2"
+	}
+}
