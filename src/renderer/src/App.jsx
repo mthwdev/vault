@@ -1,9 +1,9 @@
-function App() {
+import Sidebar from "./components/Sidebar";
+
+export default function App() {
 	return (
 		<>
-			<p className="text-2xl">test</p>
+			<Sidebar></Sidebar>
 		</>
 	);
 }
-
-export default App;
