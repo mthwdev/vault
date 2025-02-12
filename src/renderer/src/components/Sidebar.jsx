@@ -19,9 +19,9 @@ export default function Sidebar({ selectedAccount, setSelectedAccount }) {
 		<>
 			<div className="flex flex-col w-48 border-r border-b h-full">
 				<div
-					onClick={() => setSelectedAccount("newaccount")}
+					onClick={() => setSelectedAccount("add")}
 					className={`border-b min-h-20 min-w-48 transition-colors duration-200 cursor-pointer flex items-center justify-center ${
-						selectedAccount === "newaccount"
+						selectedAccount === "add"
 							? "bg-gray-500"
 							: "hover:bg-gray-400"
 					}`}
