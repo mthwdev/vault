@@ -26,10 +26,14 @@ app.whenReady().then(() => {
 	ipcMain.handle("add-account", (event, accountData) =>
 		addAccount(accountData)
 	);
+	ipcMain.handle("update-account", (event, accountId, accountData) =>
+		updateAccount(accountId, accountData)
+	);
 });
 
 async function getAccounts() {
 	const filePath = path.join(__dirname, "userdata.json");
+
 	await initializeUserdata(filePath);
 
 	try {
@@ -42,10 +46,11 @@ async function getAccounts() {
 }
 
 async function addAccount(accountData) {
-	console.log("received data:", accountData);
-	try {
-		const filePath = path.join(__dirname, "userdata.json");
+	const filePath = path.join(__dirname, "userdata.json");
 
+	console.log("received data:", accountData);
+
+	try {
 		const accounts = JSON.parse(await fs.promises.readFile(filePath));
 
 		const highestId = accounts.length
@@ -78,5 +83,38 @@ async function initializeUserdata(filePath) {
 		});
 	} catch (error) {
 		console.error("error initializing userdata file:", error);
+	}
+}
+
+async function updateAccount(accountId, accountData) {
+	console.log("updating account:", accountId, "with data:", accountData);
+	const filePath = path.join(__dirname, "userdata.json");
+
+	try {
+		const accounts = JSON.parse(await fs.promises.readFile(filePath));
+
+		const accountIndex = accounts.findIndex(
+			(account) => account.id === accountId
+		);
+
+		if (accountIndex === -1) {
+			console.log(`account with ID ${accountId} not found.`);
+			return;
+		}
+
+		const updatedAccount = {
+			id: accountId,
+			...accountData,
+		};
+		accounts[accountIndex] = updatedAccount;
+
+		await fs.promises.writeFile(
+			filePath,
+			JSON.stringify(accounts, null, 4)
+		);
+
+		console.log(`account ${accountId} updated successfully`);
+	} catch (error) {
+		console.error(error);
 	}
 }

@@ -32,7 +32,10 @@ export default function App() {
 					<AddAccountForm fetchAccounts={fetchAccounts} />
 				)}
 				{selectedAccount !== null && selectedAccount !== "add" && (
-					<EditAccountForm selectedAccount={selectedAccount} />
+					<EditAccountForm
+						selectedAccount={selectedAccount}
+						fetchAccounts={fetchAccounts}
+					/>
 				)}
 			</div>
 		</>

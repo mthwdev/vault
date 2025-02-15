@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export default function EditAccountForm({ selectedAccount }) {
+export default function EditAccountForm({ selectedAccount, fetchAccounts }) {
 	const [formData, setFormData] = useState({
 		username: selectedAccount.username,
 		password: selectedAccount.password,
@@ -23,7 +23,9 @@ export default function EditAccountForm({ selectedAccount }) {
 	}
 	async function handleSubmit(e) {
 		e.preventDefault();
-		console.log("-");
+
+		await window.electronAPI.updateAccount(selectedAccount.id, formData);
+		await fetchAccounts();
 	}
 	return (
 		<>
