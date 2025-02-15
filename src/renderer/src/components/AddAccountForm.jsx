@@ -7,6 +7,8 @@ export default function AddAccountForm({ fetchAccounts }) {
 		displayName: "",
 	});
 
+	const [validationMessage, setValidationMessage] = useState();
+
 	function handleChange(e) {
 		setFormData({
 			...formData,
@@ -17,7 +19,13 @@ export default function AddAccountForm({ fetchAccounts }) {
 	async function handleSubmit(e) {
 		e.preventDefault();
 
-		await window.electronAPI.addAccount(formData);
+		const success = await window.electronAPI.addAccount(formData);
+		if (success) {
+			setValidationMessage({ text: "account added", type: "success" });
+		} else {
+			setValidationMessage({ text: "an error occurred", type: "error" });
+		}
+
 		await fetchAccounts();
 	}
 
@@ -68,6 +76,17 @@ export default function AddAccountForm({ fetchAccounts }) {
 			>
 				add
 			</button>
+			{validationMessage && (
+				<p
+					className={`mt-2 ${
+						validationMessage.type === "success"
+							? "text-green-500"
+							: "text-red-500"
+					}`}
+				>
+					{validationMessage.text}
+				</p>
+			)}
 		</form>
 	);
 }

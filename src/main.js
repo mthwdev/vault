@@ -70,24 +70,15 @@ async function addAccount(accountData) {
 		);
 
 		console.log(`account added with id: ${highestId + 1}`);
+		return true;
 	} catch (error) {
 		console.error(error);
-	}
-}
-
-async function initializeUserdata(filePath) {
-	try {
-		await fs.promises.access(filePath).catch(async () => {
-			await fs.promises.writeFile(filePath, "[]");
-			console.log("userdata file created and initialized");
-		});
-	} catch (error) {
-		console.error("error initializing userdata file:", error);
+		return false;
 	}
 }
 
 async function updateAccount(accountId, accountData) {
-	console.log("updating account:", accountId, "with data:", accountData);
+	console.log("updating account", accountId, ", with data:", accountData);
 	const filePath = path.join(__dirname, "userdata.json");
 
 	try {
@@ -99,7 +90,7 @@ async function updateAccount(accountId, accountData) {
 
 		if (accountIndex === -1) {
 			console.log(`account with ID ${accountId} not found.`);
-			return;
+			return false;
 		}
 
 		const updatedAccount = {
@@ -114,7 +105,20 @@ async function updateAccount(accountId, accountData) {
 		);
 
 		console.log(`account ${accountId} updated successfully`);
+		return true;
 	} catch (error) {
 		console.error(error);
+		return false;
+	}
+}
+
+async function initializeUserdata(filePath) {
+	try {
+		await fs.promises.access(filePath).catch(async () => {
+			await fs.promises.writeFile(filePath, "[]");
+			console.log("userdata file created and initialized");
+		});
+	} catch (error) {
+		console.error("error initializing userdata file:", error);
 	}
 }

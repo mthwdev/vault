@@ -7,6 +7,8 @@ export default function EditAccountForm({ selectedAccount, fetchAccounts }) {
 		displayName: selectedAccount.displayName,
 	});
 
+	const [validationMessage, setValidationMessage] = useState();
+
 	useEffect(() => {
 		setFormData({
 			username: selectedAccount.username,
@@ -24,7 +26,16 @@ export default function EditAccountForm({ selectedAccount, fetchAccounts }) {
 	async function handleSubmit(e) {
 		e.preventDefault();
 
-		await window.electronAPI.updateAccount(selectedAccount.id, formData);
+		const success = window.electronAPI.updateAccount(
+			selectedAccount.id,
+			formData
+		);
+		if (success) {
+			setValidationMessage({ text: "changes saved", type: "success" });
+		} else {
+			setValidationMessage({ text: "an error occurred", type: "error" });
+		}
+
 		await fetchAccounts();
 	}
 	return (
@@ -75,6 +86,17 @@ export default function EditAccountForm({ selectedAccount, fetchAccounts }) {
 				>
 					save
 				</button>
+				{validationMessage && (
+					<p
+						className={`mt-2 ${
+							validationMessage.type === "success"
+								? "text-green-500"
+								: "text-red-500"
+						}`}
+					>
+						{validationMessage.text}
+					</p>
+				)}
 			</form>
 		</>
 	);
