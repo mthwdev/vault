@@ -20,6 +20,9 @@ export default function App() {
 		fetchAccounts();
 	}, []);
 
+	function handleLogin() {
+		console.log("login -");
+	}
 	return (
 		<>
 			<div className="flex w-full h-full">
@@ -32,10 +35,18 @@ export default function App() {
 					<AddAccountForm fetchAccounts={fetchAccounts} />
 				)}
 				{selectedAccount !== null && selectedAccount !== "add" && (
-					<EditAccountForm
-						selectedAccount={selectedAccount}
-						fetchAccounts={fetchAccounts}
-					/>
+					<div className="flex justify-between w-full">
+						<EditAccountForm
+							selectedAccount={selectedAccount}
+							fetchAccounts={fetchAccounts}
+						/>
+						<button
+							className="w-24 h-10 bg-black text-white rounded-full mr-8 mt-4"
+							onClick={handleLogin}
+						>
+							login
+						</button>
+					</div>
 				)}
 			</div>
 		</>
