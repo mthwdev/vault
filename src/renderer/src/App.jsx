@@ -1,5 +1,6 @@
 import Sidebar from "./components/Sidebar";
 import AddAccountForm from "./components/AddAccountForm";
+import EditAccountForm from "./components/EditAccountForm";
 import { useState, useEffect } from "react";
 
 export default function App() {
@@ -31,7 +32,7 @@ export default function App() {
 					<AddAccountForm fetchAccounts={fetchAccounts} />
 				)}
 				{selectedAccount !== null && selectedAccount !== "add" && (
-					<p>meow</p>
+					<EditAccountForm selectedAccount={selectedAccount} />
 				)}
 			</div>
 		</>

@@ -66,7 +66,7 @@ export default function AddAccountForm({ fetchAccounts }) {
 				type="submit"
 				className="w-24 h-10 bg-black text-white rounded-full mt-2"
 			>
-				save
+				add
 			</button>
 		</form>
 	);
