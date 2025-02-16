@@ -3,10 +3,10 @@ export default function AccountTab({ displayName, isSelected, onClick }) {
 		<>
 			<div
 				onClick={onClick}
-				className={`min-h-20 min-w-48 transition-colors duration-200 cursor-pointer ${
+				className={`min-h-20 min-w-48 transition-colors duration-200 cursor-pointer border-black border-b ${
 					isSelected
 						? "bg-black text-white"
-						: "border-black border-b border-solid hover:bg-black hover:text-white"
+						: " hover:bg-black hover:text-white"
 				}`}
 			>
 				<div className="ml-2 mt-2">

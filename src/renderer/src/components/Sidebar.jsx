@@ -10,10 +10,10 @@ export default function Sidebar({
 			<div className="flex flex-col min-w-50 border-r h-full overflow-auto">
 				<div
 					onClick={() => setSelectedAccount("add")}
-					className={`min-h-20 min-w-48 transition-colors duration-200 cursor-pointer flex items-center justify-center ${
+					className={`min-h-20 min-w-48 transition-colors duration-200 cursor-pointer flex items-center justify-center border-black border-b  ${
 						selectedAccount === "add"
 							? "bg-black text-white"
-							: "border-black border-b border-solid hover:bg-black hover:text-white"
+							: " hover:bg-black hover:text-white"
 					}`}
 				>
 					<div className="h-12 w-12 rounded-full border-dashed border-2 flex items-center justify-center">
