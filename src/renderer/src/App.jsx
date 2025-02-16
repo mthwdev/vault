@@ -49,7 +49,7 @@ export default function App() {
 						/>
 						<div className="flex ml-4 mt-auto mb-14">
 							<button
-								className="w-24 h-10 bg-black text-white rounded-full"
+								className="w-24 h-10 bg-black text-white rounded-full hover:bg-white hover:text-black hover:border-2 hover:border-black cursor-pointer"
 								onClick={handleLogin}
 							>
 								login

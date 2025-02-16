@@ -72,7 +72,7 @@ export default function AddAccountForm({ fetchAccounts }) {
 
 			<button
 				type="submit"
-				className="w-24 h-10 bg-black text-white rounded-full mt-2"
+				className="w-24 h-10 bg-black text-white rounded-full mt-2 hover:bg-white hover:text-black hover:border-2 hover:border-black cursor-pointer"
 			>
 				add
 			</button>
