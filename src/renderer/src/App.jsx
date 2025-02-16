@@ -47,12 +47,17 @@ export default function App() {
 							selectedAccount={selectedAccount}
 							fetchAccounts={fetchAccounts}
 						/>
-						<button
-							className="w-24 h-10 bg-black text-white rounded-full ml-4 mt-auto mb-14"
-							onClick={handleLogin}
-						>
-							login
-						</button>
+						<div className="flex ml-4 mt-auto mb-14">
+							<button
+								className="w-24 h-10 bg-black text-white rounded-full"
+								onClick={handleLogin}
+							>
+								login
+							</button>
+							<p className="ml-4 mt-2">
+								(make sure riot client is opened)
+							</p>
+						</div>
 					</div>
 				)}
 			</div>
