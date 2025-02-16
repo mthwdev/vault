@@ -7,21 +7,28 @@ export default function App() {
 	const [selectedAccount, setSelectedAccount] = useState(null);
 	const [accounts, setAccounts] = useState([]);
 
-	const fetchAccounts = async () => {
+	async function fetchAccounts() {
 		try {
 			const data = await window.electronAPI.getAccounts();
 			setAccounts(data);
+
+			if (selectedAccount) {
+				const updatedAccount = data.find(
+					(acc) => acc.id === selectedAccount.id
+				);
+				setSelectedAccount(updatedAccount || null);
+			}
 		} catch (error) {
 			console.error("error fetching accounts:", error);
 		}
-	};
+	}
 
 	useEffect(() => {
 		fetchAccounts();
 	}, []);
 
 	function handleLogin() {
-		console.log("login -");
+		window.electronAPI.loginRiot(selectedAccount);
 	}
 	return (
 		<>
@@ -35,13 +42,13 @@ export default function App() {
 					<AddAccountForm fetchAccounts={fetchAccounts} />
 				)}
 				{selectedAccount !== null && selectedAccount !== "add" && (
-					<div className="flex justify-between w-full">
+					<div className="flex flex-col h-full w-full">
 						<EditAccountForm
 							selectedAccount={selectedAccount}
 							fetchAccounts={fetchAccounts}
 						/>
 						<button
-							className="w-24 h-10 bg-black text-white rounded-full mr-8 mt-4"
+							className="w-24 h-10 bg-black text-white rounded-full ml-4 mt-auto mb-14"
 							onClick={handleLogin}
 						>
 							login

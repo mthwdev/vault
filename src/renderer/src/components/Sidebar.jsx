@@ -7,7 +7,7 @@ export default function Sidebar({
 }) {
 	return (
 		<>
-			<div className="flex flex-col w-48 border-r h-full overflow-auto">
+			<div className="flex flex-col min-w-50 border-r h-full overflow-auto">
 				<div
 					onClick={() => setSelectedAccount("add")}
 					className={`border-b min-h-20 min-w-48 transition-colors duration-200 cursor-pointer flex items-center justify-center ${

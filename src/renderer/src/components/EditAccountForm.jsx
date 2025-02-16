@@ -26,7 +26,7 @@ export default function EditAccountForm({ selectedAccount, fetchAccounts }) {
 	async function handleSubmit(e) {
 		e.preventDefault();
 
-		const success = window.electronAPI.updateAccount(
+		const success = await window.electronAPI.updateAccount(
 			selectedAccount.id,
 			formData
 		);
