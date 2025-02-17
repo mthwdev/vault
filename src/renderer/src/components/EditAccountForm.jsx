@@ -10,6 +10,13 @@ export default function EditAccountForm({ selectedAccount, fetchAccounts }) {
 	const [validationMessage, setValidationMessage] = useState();
 
 	useEffect(() => {
+		if (validationMessage) {
+			const timeout = setTimeout(() => setValidationMessage(null), 1200);
+			return () => clearTimeout(timeout);
+		}
+	}, [validationMessage]);
+
+	useEffect(() => {
 		setFormData({
 			username: selectedAccount.username,
 			password: selectedAccount.password,

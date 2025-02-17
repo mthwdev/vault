@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function AddAccountForm({ fetchAccounts }) {
 	const [formData, setFormData] = useState({
@@ -8,6 +8,13 @@ export default function AddAccountForm({ fetchAccounts }) {
 	});
 
 	const [validationMessage, setValidationMessage] = useState();
+
+	useEffect(() => {
+		if (validationMessage) {
+			const timeout = setTimeout(() => setValidationMessage(null), 1200);
+			return () => clearTimeout(timeout);
+		}
+	}, [validationMessage]);
 
 	function handleChange(e) {
 		setFormData({

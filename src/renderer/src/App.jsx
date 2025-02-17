@@ -16,7 +16,7 @@ export default function App() {
 				const updatedAccount = data.find(
 					(acc) => acc.id === selectedAccount.id
 				);
-				setSelectedAccount(updatedAccount || null);
+				setSelectedAccount(updatedAccount || "add");
 			}
 		} catch (error) {
 			console.error("error fetching accounts:", error);
@@ -44,6 +44,7 @@ export default function App() {
 				{selectedAccount !== null && selectedAccount !== "add" && (
 					<div className="flex flex-col h-full w-full">
 						<EditAccountForm
+							key={selectedAccount.id}
 							selectedAccount={selectedAccount}
 							fetchAccounts={fetchAccounts}
 						/>
