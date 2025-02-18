@@ -24,6 +24,7 @@ export default function Sidebar({
 					<AccountTab
 						key={account.id}
 						displayName={account.displayName}
+						note={account.note}
 						isSelected={selectedAccount?.id === account.id}
 						onClick={() => setSelectedAccount(account)}
 					/>

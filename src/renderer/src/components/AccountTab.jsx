@@ -1,4 +1,4 @@
-export default function AccountTab({ displayName, isSelected, onClick }) {
+export default function AccountTab({ displayName, note, isSelected, onClick }) {
 	return (
 		<>
 			<div
@@ -11,6 +11,12 @@ export default function AccountTab({ displayName, isSelected, onClick }) {
 			>
 				<div className="ml-2 mt-2">
 					<p>{displayName}</p>
+					{note ? (
+						<p className="font-bold">
+							note:{" "}
+							{<p className="font-normal inline-block">{note}</p>}
+						</p>
+					) : null}
 				</div>
 			</div>
 		</>

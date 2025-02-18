@@ -5,6 +5,7 @@ export default function EditAccountForm({ selectedAccount, fetchAccounts }) {
 		username: selectedAccount.username,
 		password: selectedAccount.password,
 		displayName: selectedAccount.displayName,
+		note: selectedAccount.note,
 	});
 
 	const [validationMessage, setValidationMessage] = useState();
@@ -50,7 +51,7 @@ export default function EditAccountForm({ selectedAccount, fetchAccounts }) {
 			<form onSubmit={handleSubmit} className="mt-8 ml-8">
 				<div className="mb-4">
 					<label htmlFor="username" className="block">
-						Username
+						username
 					</label>
 					<input
 						id="username"
@@ -63,7 +64,7 @@ export default function EditAccountForm({ selectedAccount, fetchAccounts }) {
 
 				<div className="mb-4">
 					<label htmlFor="password" className="block">
-						Password
+						password
 					</label>
 					<input
 						id="password"
@@ -76,12 +77,25 @@ export default function EditAccountForm({ selectedAccount, fetchAccounts }) {
 
 				<div className="mb-4">
 					<label htmlFor="displayName" className="block">
-						Display Name
+						display name
 					</label>
 					<input
 						id="displayName"
 						type="text"
 						value={formData.displayName}
+						onChange={handleChange}
+						className="mt-1 p-1 border border-black"
+					/>
+				</div>
+
+				<div className="mb-4">
+					<label htmlFor="note" className="block">
+						note
+					</label>
+					<input
+						id="note"
+						type="text"
+						value={formData.note}
 						onChange={handleChange}
 						className="mt-1 p-1 border border-black"
 					/>
