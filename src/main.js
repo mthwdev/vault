@@ -9,6 +9,7 @@ function createMainWindow() {
 		width: 800,
 		height: 600,
 		resizable: false,
+		icon: path.join(__dirname, "vaulticon.ico"),
 		webPreferences: {
 			nodeIntegration: false,
 			contextIsolation: true,
