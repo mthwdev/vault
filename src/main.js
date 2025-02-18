@@ -18,7 +18,11 @@ function createMainWindow() {
 	});
 
 	mainWindow.removeMenu();
-	mainWindow.loadURL("http://localhost:5173/");
+	if (app.isPackaged) {
+		mainWindow.loadFile(path.join(__dirname, "/renderer/dist/index.html"));
+	} else {
+		mainWindow.loadURL("http://localhost:5173/");
+	}
 }
 
 app.whenReady().then(() => {
@@ -33,8 +37,20 @@ app.whenReady().then(() => {
 	ipcMain.handle("login-riot", (event, account) => loginRiot(account));
 });
 
+function getResourcePath(fileName) {
+	return app.isPackaged
+		? path.join(process.resourcesPath, fileName)
+		: path.join(__dirname, fileName);
+}
+
+function getUserDataPath(fileName) {
+	return app.isPackaged
+		? path.join(app.getPath("userData"), fileName)
+		: path.join(__dirname, fileName);
+}
+
 async function getAccounts() {
-	const filePath = path.join(__dirname, "userdata.json");
+	const filePath = getUserDataPath("userdata.json");
 
 	await initializeUserdata(filePath);
 
@@ -48,7 +64,7 @@ async function getAccounts() {
 }
 
 async function addAccount(accountData) {
-	const filePath = path.join(__dirname, "userdata.json");
+	const filePath = getUserDataPath("userdata.json");
 
 	console.log("received data:", accountData);
 
@@ -81,7 +97,7 @@ async function addAccount(accountData) {
 
 async function updateAccount(accountId, accountData) {
 	console.log("updating account", accountId, ", with data:", accountData);
-	const filePath = path.join(__dirname, "userdata.json");
+	const filePath = getUserDataPath("userdata.json");
 
 	try {
 		const accounts = JSON.parse(await fs.promises.readFile(filePath));
@@ -126,13 +142,13 @@ async function initializeUserdata(filePath) {
 }
 
 function loginRiot(account) {
-	const psScriptPath = path.join(__dirname, "./loginRiot.ps1");
+	const filePath = getResourcePath("loginRiot.ps1");
 
 	const ps = spawn("powershell.exe", [
 		"-ExecutionPolicy",
 		"Bypass",
 		"-File",
-		psScriptPath,
+		filePath,
 		account.username,
 		account.password,
 	]);
