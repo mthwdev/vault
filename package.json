@@ -5,9 +5,33 @@
 	"author": "mthwdev",
 	"license": "MIT",
 	"scripts": {
-		"dev": "electron ."
+		"dev": "electron .",
+		"build": "electron-builder"
 	},
-	"dependencies": {
-		"electron": "^34.0.2"
+	"dependencies": {},
+	"devDependencies": {
+		"electron": "^34.0.2",
+		"electron-builder": "^25.1.8"
+	},
+	"build": {
+		"extraResources": [
+			{
+				"from": "src/loginRiot.ps1",
+				"to": "loginRiot.ps1"
+			}
+		],
+		"win": {
+			"icon": "src/vaulticon.ico",
+			"target": [
+				"nsis"
+			]
+		},
+		"nsis": {
+			"oneClick": false,
+			"allowElevation": true,
+			"allowToChangeInstallationDirectory": false,
+			"artifactName": "vault setup.exe",
+			"perMachine": true
+		}
 	}
 }
