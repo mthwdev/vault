@@ -10,9 +10,9 @@
 
 ## Tech Stack
 
--   **Electron**: Framework for building cross-platform desktop applications using web technologies (HTML, CSS, JavaScript). It enables "vault" to run on Windows, macOS, and Linux with a consistent desktop experience.
+-   **Electron**: Framework for building desktop applications using web technologies like HTML, CSS, and JavaScript.
 
--   **React**: JavaScript library for building user interfaces, allowing dynamic rendering and state management. React powers the interactive front-end of "vault".
+-   **React**: JavaScript library for building dynamic user interfaces, enabling fast and interactive user experiences.
 
 -   **Tailwind CSS**: Utility-first CSS framework for creating responsive designs quickly and efficiently.
 
@@ -20,7 +20,12 @@
 
 ### Running the packaged version of vault:
 
-No stable version has been released yet.
+1. Go to the [Releases](https://github.com/mthwdev/vault/releases) page of the repository.
+2. Download your desired version of vault as a `.zip` file
+3. Unzip the `.zip` file.
+4. Run the `vault-setup.exe` file to install the application.
+5. Follow the installation instructions.
+6. Once installed, open vault from your desktop or start menu.
 
 ### Running vault in development mode:
 
@@ -76,11 +81,39 @@ npm run dev
 
 ```
 
-Please keep in mind that this project is still in early development. Some features may not be fully implemented or stable. Feel free to try it out, but be aware that it might have bugs or missing features.
-
 ## Usage
 
-Guidelines on how to use "vault" will be added with the first release.
+### Viewing your accounts
+
+All added accounts are listed in the sidebar on the left.
+
+### Adding an account
+
+1. Click the "+" button in the sidebar to open the form for adding a new account.
+2. Fill in the following fields:
+    - **username**: Your Riot Games account username.
+    - **password**: Your Riot Games account password.
+    - **display name**: A name to identify this account in the sidebar.
+    - **note**: Any additional notes about this account.
+3. Click the "add" button to add the account.
+
+### Modifying an Account
+
+1. Select the account you wish to modify from the sidebar to open the form for modifying an account
+2. Edit any fields you'd like to change.
+3. Click the "save" button to save the changes.
+
+### Logging into Riot Client
+
+1. Select the account you want to log in with from the sidebar.
+2. Ensure the Riot Client is open on your computer.
+3. Click the "login" button at the bottom of the application.
+4. The application will automatically enter your credentials and log you into the Riot Client.
+
+
+**Note**: All account data is saved locally on your machine and is not sent to any server.
+
+Please keep in mind that this project is still in early development. Some features may not be fully implemented or stable. Feel free to try it out, but be aware that it might have bugs or missing features.
 
 ## Contributing
 
