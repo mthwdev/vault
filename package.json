@@ -30,7 +30,7 @@
 			"oneClick": false,
 			"allowElevation": true,
 			"allowToChangeInstallationDirectory": false,
-			"artifactName": "vault setup.exe",
+			"artifactName": "vault-setup.exe",
 			"perMachine": true
 		}
 	}
