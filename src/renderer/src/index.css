@@ -2,7 +2,7 @@
 @import "tailwindcss";
 
 @theme {
-	--font-poppins: "Poppins", poppins;
+	--font-poppins: "Poppins", sans-serif;
 }
 
 html,
