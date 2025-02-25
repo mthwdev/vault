@@ -31,7 +31,8 @@
 			"allowElevation": true,
 			"allowToChangeInstallationDirectory": false,
 			"artifactName": "vault-setup.exe",
-			"perMachine": true
+			"perMachine": true,
+			"deleteAppDataOnUninstall": true
 		}
 	}
 }
