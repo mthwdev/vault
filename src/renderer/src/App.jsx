@@ -30,6 +30,15 @@ export default function App() {
 	function handleLogin() {
 		window.electronAPI.loginRiot(selectedAccount);
 	}
+	async function handleDelete() {
+		const success = await window.electronAPI.deleteAccount(
+			selectedAccount.id
+		);
+		if (success) {
+			setSelectedAccount(null);
+			fetchAccounts();
+		}
+	}
 	return (
 		<>
 			<div className="flex w-full h-full">
@@ -60,7 +69,7 @@ export default function App() {
 							</p>
 							<button
 								className="w-24 h-10 bg-red-500 text-white rounded-full hover:bg-white hover:text-red-500 hover:border-2 hover:border-red-500 cursor-pointer ml-20"
-								onClick={null}
+								onClick={handleDelete}
 							>
 								delete
 							</button>

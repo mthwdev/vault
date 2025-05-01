@@ -34,6 +34,9 @@ app.whenReady().then(() => {
 	ipcMain.handle("update-account", (event, accountId, accountData) =>
 		updateAccount(accountId, accountData)
 	);
+	ipcMain.handle("delete-account", (event, accountId) =>
+		deleteAccount(accountId)
+	);
 	ipcMain.handle("login-riot", (event, account) => loginRiot(account));
 });
 
@@ -126,6 +129,27 @@ async function updateAccount(accountId, accountData) {
 		return true;
 	} catch (error) {
 		console.error(error);
+		return false;
+	}
+}
+
+async function deleteAccount(accountId) {
+	const filePath = getUserDataPath("userdata.json");
+
+	try {
+		const accounts = JSON.parse(await fs.promises.readFile(filePath));
+		const index = accounts.findIndex((account) => account.id === accountId);
+
+		accounts.splice(index, 1);
+		await fs.promises.writeFile(
+			filePath,
+			JSON.stringify(accounts, null, 4)
+		);
+
+		console.log(`account ${accountId} deleted successfully.`);
+		return true;
+	} catch (error) {
+		console.error("error deleting account:", error);
 		return false;
 	}
 }
