@@ -58,6 +58,12 @@ export default function App() {
 							<p className="ml-4 mt-2">
 								(make sure riot client is opened)
 							</p>
+							<button
+								className="w-24 h-10 bg-red-500 text-white rounded-full hover:bg-white hover:text-red-500 hover:border-2 hover:border-red-500 cursor-pointer ml-20"
+								onClick={null}
+							>
+								delete
+							</button>
 						</div>
 					</div>
 				)}
